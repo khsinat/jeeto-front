@@ -116,6 +116,9 @@
 
 
   --header-background: oklch(0.1677 0.0232 260.27);
+
+
+  --primary-button: oklch(63% 0.18 257);
 }
 
 @layer base {
