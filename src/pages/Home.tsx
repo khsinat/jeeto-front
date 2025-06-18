@@ -1,5 +1,8 @@
 import { Hero } from "@/components/Herobanner"
 import { GameCard } from "@/components/GameCard"
+import { Button } from "@/components/ui/button"
+import { Link } from "react-router"
+import Footer from "@/components/Footer"
 const features = [
     {
         id: "feature-1",
@@ -51,8 +54,12 @@ const Home = () => {
     return (
         <>
             <Hero />
+            <Button asChild>
+                <Link to="/game/hello" className="mx-auto mt-4">
+                    <span className="text-md font-bold">Explore Games</span></Link>
+            </Button>
             {/* gamecard section */}
-            <section className="py-4 mx-auto max-w-[1200px] ">
+            <section className="py-4 mx-auto max-w-[1200px] mb-20">
                 <div className="container flex flex-col gap-16 px-5 ">
                     <div className="grid gap-3 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 overflow-visible ">
                         {features.map(feature => (
@@ -61,6 +68,7 @@ const Home = () => {
                     </div>
                 </div>
             </section>
+            <Footer />
         </>
     )
 }

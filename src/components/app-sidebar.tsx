@@ -28,89 +28,89 @@ import { TeamSwitcher } from "./team-switcher"
 
 const data = {
     user: {
-        name: "shadcn",
-        email: "m@example.com",
+        name: "Jeeto Ai",
+        email: "mail@jeetoai.com",
         avatar: "/avatars/shadcn.jpg",
     },
     teams: [
         {
-            name: "Acme Inc",
+            name: "Jeeto Ai",
             logo: GalleryVerticalEnd,
             plan: "Enterprise",
         },
         {
-            name: "Acme Corp.",
+            name: "Jeeto Ai",
             logo: AudioWaveform,
             plan: "Startup",
         },
         {
-            name: "Evil Corp.",
+            name: "Jeeto Ai",
             logo: Command,
             plan: "Free",
         },
     ],
     navMain: [
         {
-            title: "Playground",
+            title: "All Games",
             url: "#",
             icon: SquareTerminal,
             isActive: true,
-            items: [
-                {
-                    title: "History",
-                    url: "#",
-                },
-                {
-                    title: "Starred",
-                    url: "#",
-                },
-                {
-                    title: "Settings",
-                    url: "#",
-                },
-            ],
+            // items: [
+            //     {
+            //         title: "History",
+            //         url: "#",
+            //     },
+            //     {
+            //         title: "Starred",
+            //         url: "#",
+            //     },
+            //     {
+            //         title: "Settings",
+            //         url: "#",
+            //     },
+            // ],
         },
         {
-            title: "Models",
+            title: "Casino",
             url: "#",
             icon: Bot,
-            items: [
-                {
-                    title: "Genesis",
-                    url: "#",
-                },
-                {
-                    title: "Explorer",
-                    url: "#",
-                },
-                {
-                    title: "Quantum",
-                    url: "#",
-                },
-            ],
+            // items: [
+            //     {
+            //         title: "Genesis",
+            //         url: "#",
+            //     },
+            //     {
+            //         title: "Explorer",
+            //         url: "#",
+            //     },
+            //     {
+            //         title: "Quantum",
+            //         url: "#",
+            //     },
+            // ],
         },
         {
-            title: "Documentation",
+            title: "Sports bet",
             url: "#",
             icon: BookOpen,
-            items: [
-                {
-                    title: "Introduction",
-                    url: "#",
-                },
-                {
-                    title: "Get Started",
-                    url: "#",
-                },
-                {
-                    title: "Tutorials",
-                    url: "#",
-                },
-                {
-                    title: "Changelog",
-                    url: "#",
-                },
-            ],
+            // items: [
+            //     {
+            //         title: "Introduction",
+            //         url: "#",
+            //     },
+            //     {
+            //         title: "Get Started",
+            //         url: "#",
+            //     },
+            //     {
+            //         title: "Tutorials",
+            //         url: "#",
+            //     },
+            //     {
+            //         title: "Changelog",
+            //         url: "#",
+            //     },
+            // ],
         },
         {
             title: "Settings",
@@ -138,17 +138,17 @@ const data = {
     ],
     projects: [
         {
-            name: "Design Engineering",
+            name: "Promotions",
             url: "#",
             icon: Frame,
         },
         {
-            name: "Sales & Marketing",
+            name: "Affiliate",
             url: "#",
             icon: PieChart,
         },
         {
-            name: "Travel",
+            name: "Explore",
             url: "#",
             icon: Map,
         },
@@ -193,9 +193,9 @@ const data = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     return (
         <Sidebar className="top-(--header-height) h-[calc(100svh-var(--header-height))]!" collapsible="icon" {...props}>
-            <SidebarHeader>
-                <TeamSwitcher teams={data.teams} />
-            </SidebarHeader>
+            {/* <SidebarHeader> */}
+            {/* <TeamSwitcher teams={data.teams} /> */}
+            {/* </SidebarHeader> */}
             <SidebarContent>
                 <NavMain items={data.navMain} />
                 <NavProjects projects={data.projects} />

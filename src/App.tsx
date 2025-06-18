@@ -1,102 +1,41 @@
 
-import { AppSidebar } from "@/components/app-sidebar"
-import { SiteHeader } from "@/components/site-header"
-import { ThemeProvider } from "@/components/theme-provider"
-import {
-  SidebarInset,
-  SidebarProvider,
-} from "@/components/ui/sidebar"
-import { GameCard } from "./components/GameCard"
-import { Hero } from "./components/Herobanner"
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router"
 import RootLayout from "./layouts/RootLayout"
 export const iframeHeight = "800px"
 export const description = "A sidebar with a header and a search form."
 
 import Home from "./pages/Home"
-import { Router } from "lucide-react"
-
-const features = [
-  {
-    id: "feature-1",
-    title: "Game 1",
-    description:
-      "Clean and intuitive interface built with the latest design principles. Optimized for the best user experience.",
-    image: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg",
-  },
-
-  {
-    id: "feature-1",
-    title: "Game 1",
-    description:
-      "Clean and intuitive interface built with the latest design principles. Optimized for the best user experience.",
-    image: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg",
-  },
-  {
-    id: "feature-1",
-    title: "Game 1",
-    description:
-      "Clean and intuitive interface built with the latest design principles. Optimized for the best user experience.",
-    image: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg",
-  },
-  {
-    id: "feature-1",
-    title: "Game 1",
-    description:
-      "Clean and intuitive interface built with the latest design principles. Optimized for the best user experience.",
-    image: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg",
-  },
-  {
-    id: "feature-1",
-    title: "Game 1",
-    description:
-      "Clean and intuitive interface built with the latest design principles. Optimized for the best user experience.",
-    image: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg",
-  },
-  {
-    id: "feature-1",
-    title: "Game 1",
-    description:
-      "Clean and intuitive interface built with the latest design principles. Optimized for the best user experience.",
-    image: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg",
-  },
-]
-
+import WalletPage from "./pages/WalletPage"
+import LoginPage from "./pages/LoginPage"
+import GamePage from "./pages/GamePage"
+import NotificationsPage from "./pages/NotificationsPage"
+import ProfilePage from "./pages/ProfilePage"
+import Faq02 from "./pages/ExtraPages/FAQ"
+import { Help } from "./pages/ExtraPages/Help"
+import PrivacyPolicy from "./pages/ExtraPages/PrivacyPolicy"
+import TermsAndConditions from "./pages/ExtraPages/TermsAndConditions"
+import ResponsiblePlayNotice from "./pages/ExtraPages/ResponsiblePlayNotice"
 
 function App() {
   const router = createBrowserRouter(createRoutesFromElements(
-    <Route path="/" element={<RootLayout />} >
-      <Route index element={<Home />} />
-    </Route>
+    <>
+      <Route path="/login" element={<LoginPage />}></Route>
+      <Route path="/" element={<RootLayout />} >
+        <Route index element={<Home />} />
+        <Route path="/notifications" element={<NotificationsPage />} />
+        <Route path="/game/:gameId" element={<GamePage />} />
+        <Route path="/wallet" element={<WalletPage />}></Route>
+        <Route path="/profile" element={<ProfilePage />}></Route>
+        <Route path="/FAQ" element={<Faq02 />}></Route>
+        <Route path="/help" element={<Help />}></Route>
+        <Route path="/terms&conditions" element={<TermsAndConditions />}></Route>
+        <Route path="/privacypolicy" element={<PrivacyPolicy />}></Route>
+        <Route path="/responsibleplaynotice" element={<ResponsiblePlayNotice />}></Route>
+      </Route>
+    </>
   ))
   return (
     <RouterProvider router={router} />
-
-    // <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-    //   <div className="[--header-height:calc(--spacing(14))]">
-    //     <SidebarProvider className="flex flex-col">
-    //       <SiteHeader />
-    //       <div className="flex flex-1">
-    //         <AppSidebar />
-    //         <SidebarInset>
-    //           <Hero />
-
-    //           {/* gamecard section */}
-    //           <section className="py-4 mx-auto max-w-[1200px] ">
-    //             <div className="container flex flex-col gap-16 px-5 ">
-    //               <div className="grid gap-3 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 overflow-visible ">
-    //                 {features.map(feature => (
-    //                   <GameCard key={feature.id} feature={feature} />
-    //                 ))}
-    //               </div>
-    //             </div>
-    //           </section>
-
-    //         </SidebarInset>
-    //       </div>
-    //     </SidebarProvider>
-    //   </div >
-    // </ThemeProvider >
   )
 }
 

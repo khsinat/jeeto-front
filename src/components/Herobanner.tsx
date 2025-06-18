@@ -15,12 +15,12 @@ const features =
 
 const Hero = () => {
     return (
-        <section className="mx-auto md:min-w-2xl lg:min-w-4xl 2xl:min-w-5xl shadow-md ">
+        <section className="mx-4 md:min-w-2xl lg:min-w-4xl 2xl:min-w-5xl shadow-md ">
             <div className="container flex relative self-center">
                 <img
                     src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
                     alt="placeholder"
-                    className="mt-2 aspect-video max-h-[300px] w-full max-w-md md:max-w-2xl lg:max-w-4xl xl:max-w-4xl 2xl:max-w-5xl rounded-t-lg object-cover shadow-md"
+                    className="mt-2 aspect-video max-h-[300px] w-full max-w-md md:max-w-2xl lg:max-w-4xl xl:max-w-4xl 2xl:max-w-5xl rounded-lg object-cover shadow-md"
                 />
                 <div className="absolute top-20 left-10 hidden md:block " >
                     <GameCard feature={features} />
