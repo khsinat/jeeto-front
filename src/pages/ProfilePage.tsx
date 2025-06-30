@@ -3,6 +3,7 @@ import { LogOut, Flame, Shield, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import useAuth from "@/hooks/useAuth";
 
 interface Profile04Props {
     name: string;
@@ -57,7 +58,7 @@ export default function Profile04({
             desc: "Master III",
         },
     ];
-
+    const { logout } = useAuth()
     return (
         <div className="w-full max-w-md mx-auto">
             <div
@@ -96,6 +97,7 @@ export default function Profile04({
                         variant="ghost"
                         size="icon"
                         className="text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300"
+                        onClick={() => logout()}
                     >
                         <LogOut className="w-4 h-4" />
                     </Button>

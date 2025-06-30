@@ -3,6 +3,10 @@ import { GameCard } from "@/components/GameCard"
 import { Button } from "@/components/ui/button"
 import { Link } from "react-router"
 import Footer from "@/components/Footer"
+import { SonnerDemo } from "@/components/sonnerdemo"
+import { account } from "@/lib/appwrite"
+// import { getCurrentUser } from "@/lib/appwrite"
+import { useState } from "react"
 const features = [
     {
         id: "feature-1",
@@ -13,35 +17,35 @@ const features = [
     },
 
     {
-        id: "feature-1",
+        id: "feature-2",
         title: "Game 1",
         description:
             "Clean and intuitive interface built with the latest design principles. Optimized for the best user experience.",
         image: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg",
     },
     {
-        id: "feature-1",
+        id: "feature-3",
         title: "Game 1",
         description:
             "Clean and intuitive interface built with the latest design principles. Optimized for the best user experience.",
         image: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg",
     },
     {
-        id: "feature-1",
+        id: "feature-4",
         title: "Game 1",
         description:
             "Clean and intuitive interface built with the latest design principles. Optimized for the best user experience.",
         image: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg",
     },
     {
-        id: "feature-1",
+        id: "feature-5",
         title: "Game 1",
         description:
             "Clean and intuitive interface built with the latest design principles. Optimized for the best user experience.",
         image: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg",
     },
     {
-        id: "feature-1",
+        id: "feature-6",
         title: "Game 1",
         description:
             "Clean and intuitive interface built with the latest design principles. Optimized for the best user experience.",
@@ -58,6 +62,7 @@ const Home = () => {
                 <Link to="/game/hello" className="mx-auto mt-4">
                     <span className="text-md font-bold">Explore Games</span></Link>
             </Button>
+            <SonnerDemo />
             {/* gamecard section */}
             <section className="py-4 mx-auto max-w-[1200px] mb-20">
                 <div className="container flex flex-col gap-16 px-5 ">

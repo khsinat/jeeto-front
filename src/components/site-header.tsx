@@ -62,7 +62,7 @@ export function SiteHeader() {
                     <Button variant="ghost" size="lg" className="rounded-full px-0">
                         <Link to="/profile">
                             <Avatar className="h-8 w-8">
-                                <AvatarImage src="https://github.com/evilrabbit.png" alt="User" />
+                                <AvatarImage src="" alt="User" />
                                 <AvatarFallback>JS</AvatarFallback>
                             </Avatar>
                         </Link>

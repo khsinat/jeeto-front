@@ -2,6 +2,7 @@ import { AppSidebar } from "@/components/app-sidebar"
 import MobileNav from "@/components/MobileNav"
 import { SiteHeader } from "@/components/site-header"
 import { ThemeProvider } from "@/components/theme-provider"
+import { Toaster } from "sonner"
 import Toolbar from "@/components/Toolbar"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 import { Outlet } from "react-router"
@@ -18,7 +19,7 @@ const RootLayout = () => {
             <Toolbar />
             <Outlet />
             {/* <Hero /> */}
-
+            <Toaster />
             {/* gamecard section */}
             {/* <section className="py-4 mx-auto max-w-[1200px] ">
                 <div className="container flex flex-col gap-16 px-5 ">
