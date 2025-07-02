@@ -59,7 +59,7 @@ const Home = () => {
         <>
             <Hero />
             <Button asChild>
-                <Link to="/game/hello" className="mx-auto mt-4">
+                <Link to="/game/hello" className="mx-auto mt-4" >
                     <span className="text-md font-bold">Explore Games</span></Link>
             </Button>
             <SonnerDemo />

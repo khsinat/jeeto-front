@@ -55,12 +55,12 @@ export function SiteHeader() {
                 </div> */}
                 <div className="flex flex-row gap-2">
                     <Button size="lg" variant="outline" asChild>
-                        <Link to="/notifications">
+                        <Link to="/notifications" >
                             <IoIosNotifications />
                         </Link>
                     </Button>
                     <Button variant="ghost" size="lg" className="rounded-full px-0">
-                        <Link to="/profile">
+                        <Link to="/profile" >
                             <Avatar className="h-8 w-8">
                                 <AvatarImage src="" alt="User" />
                                 <AvatarFallback>JS</AvatarFallback>

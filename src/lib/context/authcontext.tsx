@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { account, databases } from "../appwrite";
-import { ID } from "appwrite";
+import { ID, Query } from "appwrite";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
 
@@ -34,6 +34,8 @@ interface AuthType {
     login: (email: string, password: string) => void
     logout: () => Promise<void>;
     loading: boolean,
+    onBoarded: string,
+    setOnBoarded: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const AuthContext = createContext<AuthType | undefined>(undefined);
@@ -43,15 +45,31 @@ const AuthProvider: React.FC<Props> = ({ children }) => {
     const [data, setData] = useState<UserData | null>(null); // Properly typed as UserData | null
     const [userId, setUserId] = useState<string>("");
     const [loading, setLoading] = useState(true);
-
+    const [onBoarded, setOnBoarded] = useState<string>("0");
+    const [email, setemail] = useState<string>("")
+    console.log("user", user)
+    console.log("userId", userId)
+    console.log("onboarded", onBoarded)
     const navigate = useNavigate();
-
     useEffect(() => {
         const authState = async () => {
             try {
                 const res = await account.get();
                 setUser(res);
                 console.log("Auth State", res);
+                setUserId(res.$id);
+                try {
+                    const userData = await databases.listDocuments(
+                        '685d619e00286d9805b7',
+                        'users',
+                        [Query.equal('userId', res.$id)]
+                    )
+                    console.log("onboarded on this step right now !!!!!!!", userData.documents[0].onBoardstep);
+                    setOnBoarded(userData.documents[0].onBoardstep);
+                } catch (error) {
+                    console.error("error fetching the data", error)
+                }
+                // Check if user data exists in the database
                 // await getUserData(res.$id);
             } catch (error) {
                 console.log("Auth State", error);
@@ -64,7 +82,10 @@ const AuthProvider: React.FC<Props> = ({ children }) => {
 
     const register = async (email: string) => {
         try {
+            setemail(email)
+            console.log("email", email)
             const res = await account.createEmailToken(ID.unique(), email);
+            console.log("Email Token Response:", res);
             setUserId(res.userId);
         } catch (err) {
             console.error("Registration failed:", err);
@@ -78,7 +99,47 @@ const AuthProvider: React.FC<Props> = ({ children }) => {
             await account.createSession(userId, secret);
             const res = await account.get();
             setUser(res);
-            navigate("/notifications");
+            try {
+                const userData = await databases.listDocuments('685d619e00286d9805b7', 'users',
+                    [Query.equal('userId', userId)]
+                )
+                if (userData.total === 0) {
+                    // If user data does not exist, create it
+                    try {
+                        await databases.createDocument('685d619e00286d9805b7', 'users', ID.unique(), {
+                            userId: res.$id,
+                            email: email,
+                            joinedAt: new Date().toISOString(),
+                            userName: "tanishk",
+                            onBoardstep: "1", // Initial onboarding step
+                        })
+                        setOnBoarded("1");
+                        console.log("User created successfully");
+                        navigate("/onboarding/step1");
+                    } catch (error) {
+                        console.error("error creating user first time ", error)
+                    }
+                } else {
+                    try {
+                        console.log("user data exists", userData.documents[0])
+                        const doc = await databases.listDocuments('685d619e00286d9805b7', 'users',
+                            [Query.equal('userId', res.$id)]
+                        )
+                        if (doc.documents[0].onBoardstep == "1") {
+                            console.log("onBoarding step 1")
+                            navigate("/onboarding/step1");
+                        } else if (doc.documents[0].onBoardstep == "0") {
+                            navigate('/login')
+                        } else {
+                            navigate('/notifications')
+                        }
+                    } catch (error) {
+                        console.error("error in the shit", error)
+                    }
+                }
+            } catch (error) {
+                console.error("verify email error", error)
+            }
             toast("completed the verification")
         } catch (err) {
             console.error("Verification failed:", err);
@@ -153,7 +214,7 @@ const AuthProvider: React.FC<Props> = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ user, register, login, logout, data, verifyEmailToken, userId, loading }}>
+        <AuthContext.Provider value={{ user, register, login, logout, data, verifyEmailToken, userId, loading, onBoarded, setOnBoarded }}>
             {children}
         </AuthContext.Provider>
     );

@@ -188,7 +188,7 @@ function Faq02() {
                             "font-medium"
                         )}
                     >
-                        <Link to="/help">
+                        <Link to="/help" >
                             Contact Support
                         </Link>
                     </button>

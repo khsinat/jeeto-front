@@ -18,6 +18,10 @@ import ResponsiblePlayNotice from "./pages/ExtraPages/ResponsiblePlayNotice"
 import { Toaster } from "sonner"
 import AuthProvider from "./lib/context/authcontext"
 import ProtectedRoutes from "./components/protectedRoutes"
+import onBoardingRoutes from "./components/onBoardingRoutes"
+import OnBoardingRoutes from "./components/onBoardingRoutes"
+import Step1 from "./pages/onboarding/Step1"
+import Step2 from "./pages/onboarding/Step2"
 
 function App() {
 
@@ -29,12 +33,18 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/" element={<RootLayout />}>
             <Route index element={<Home />} />
+            <Route path="/game/:gameId" element={<GamePage />} />
+          </Route>
+          {/* Onboarding Routes (No RootLayout) */}
+          <Route element={<OnBoardingRoutes />}>
+            <Route path="/onboarding">
+              <Route path="step1" element={<Step1 />} />
+            </Route>
           </Route>
 
           <Route element={<ProtectedRoutes />}>
             <Route path="/" element={<RootLayout />}>
               <Route path="/notifications" element={<NotificationsPage />} />
-              <Route path="/game/:gameId" element={<GamePage />} />
               <Route path="/wallet" element={<WalletPage />} />
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/FAQ" element={<Faq02 />} />
