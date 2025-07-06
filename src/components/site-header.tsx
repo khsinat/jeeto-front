@@ -13,10 +13,29 @@ import {
     AvatarImage,
 } from "@/components/ui/avatar"
 import { Link } from "react-router";
+import useAuth from "@/hooks/useAuth";
+import { useEffect, useState } from "react";
+import { databases } from "@/lib/appwrite";
+import { Query } from "appwrite";
 
 export function SiteHeader() {
     const { toggleSidebar } = useSidebar()
-
+    const [balance, setbalance] = useState(0)
+    const user = useAuth()
+    useEffect(() => {
+        const fetchbalance = async () => {
+            if (user) {
+                const userbalance = await databases.listDocuments(
+                    "685d619e00286d9805b7",
+                    "users",
+                    [Query.equal("userId", user.userId)]
+                )
+                setbalance(userbalance.documents[0]?.balance || 0)
+            }
+        }
+        console.log("balance of the user", balance)
+        fetchbalance()
+    }, [user])
     return (
         <header className="bg-(--sidebar) sticky top-0 z-50 flex w-full items-center justify-between border-b">
             {/* <div>
@@ -41,6 +60,12 @@ export function SiteHeader() {
                     </Avatar>
                 </Link>
             </Button>
+            <div className="flex justify-center items-center gap-4">
+                <h3 className="text-lg  text-black">
+                ₹{balance}
+                </h3>
+                <Button variant={"primary_button"}>Deposit</Button>
+            </div>
             <div className="flex items-center gap-10 mr-4 h-(--header-height) justify-end">
                 {/* <div className="flex flex-row gap-2">
                     <Button size="lg" variant="outline" asChild>
