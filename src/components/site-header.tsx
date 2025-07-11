@@ -17,6 +17,7 @@ import useAuth from "@/hooks/useAuth";
 import { useEffect, useState } from "react";
 import { databases } from "@/lib/appwrite";
 import { Query } from "appwrite";
+import { useLocation, useNavigate } from "react-router";
 
 export function SiteHeader() {
     const { toggleSidebar } = useSidebar()
@@ -36,6 +37,16 @@ export function SiteHeader() {
         console.log("balance of the user", balance)
         fetchbalance()
     }, [user])
+    const location = useLocation();
+const navigate = useNavigate();
+
+const handleDepositClick = () => {
+  const params = new URLSearchParams(location.search);
+  params.set("modal", "cashier");
+  params.set("tab", "deposit");
+  navigate(`${location.pathname}?${params.toString()}`, { replace: false });
+};
+
     return (
         <header className="bg-(--sidebar) sticky top-0 z-50 flex w-full items-center justify-between border-b">
             {/* <div>
@@ -64,7 +75,7 @@ export function SiteHeader() {
                 <h3 className="text-lg  text-black">
                 ₹{balance}
                 </h3>
-                <Button variant={"primary_button"}>Deposit</Button>
+                <Button variant={"primary_button"} onClick={handleDepositClick}>Deposit</Button>
             </div>
             <div className="flex items-center gap-10 mr-4 h-(--header-height) justify-end">
                 {/* <div className="flex flex-row gap-2">

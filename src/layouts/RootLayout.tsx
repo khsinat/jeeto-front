@@ -6,12 +6,14 @@ import { Toaster } from "sonner"
 import Toolbar from "@/components/Toolbar"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 import { Outlet } from "react-router"
+import { CashierModal } from "@/components/CashierModal"
 const RootLayout = () => {
   return (
     // <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
     <div className="[--header-height:calc(--spacing(14))]">
       <SidebarProvider className="flex flex-col">
         <SiteHeader />
+        <CashierModal />
         <div className="flex flex-1">
           <AppSidebar />
           <SidebarInset>

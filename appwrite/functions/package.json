@@ -1,0 +1,22 @@
+{
+  "name": "jeeto-admin-functions",
+  "version": "1.0.0",
+  "description": "Appwrite functions for admin image upload and management",
+  "main": "index.js",
+  "dependencies": {
+    "node-appwrite": "^13.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "appwrite",
+    "functions",
+    "admin",
+    "upload",
+    "images"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+} 

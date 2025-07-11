@@ -22,6 +22,9 @@ import onBoardingRoutes from "./components/onBoardingRoutes"
 import OnBoardingRoutes from "./components/onBoardingRoutes"
 import Step1 from "./pages/onboarding/Step1"
 import Step2 from "./pages/onboarding/Step2"
+import LeaderboardTable from "./components/leaderboard"
+import AdminUpload from "./components/AdminUpload"
+import AdminRoute from "./components/AdminRoute"
 
 function App() {
 
@@ -52,8 +55,20 @@ function App() {
               <Route path="/terms&conditions" element={<TermsAndConditions />} />
               <Route path="/privacypolicy" element={<PrivacyPolicy />} />
               <Route path="/responsibleplaynotice" element={<ResponsiblePlayNotice />} />
+              <Route path="/deposit" />
+              <Route path="/withdraw"/>
+              <Route path="/leaderboard" element={<LeaderboardTable/>}/>
             </Route>
           </Route>
+    
+          
+          {/* Admin Routes - Separate from regular protected routes */}
+          <Route element={<AdminRoute />}>
+            <Route path="/" element={<RootLayout />}>
+              <Route path="/admin/upload" element={<AdminUpload />} />
+            </Route>
+          </Route>
+
 
         </Routes>
       </AuthProvider >
